@@ -50,9 +50,8 @@ public class MasterMindRunner {
 
     private static void displayResult(Combination request, Comparison comparison) {
         long countColorAndPosition = comparison.getMatches().stream()
-                .mapToLong(match -> (match == TokenMatch.COLOR_AND_POSITION) ? 1 : 0).count();
-        long countColorOnly = comparison.getMatches().stream().mapToLong(match -> (match == TokenMatch.COLOR) ? 1 : 0)
-                .count();
+                .filter(match -> match == TokenMatch.COLOR_AND_POSITION).count();
+        long countColorOnly = comparison.getMatches().stream().filter(match -> match == TokenMatch.COLOR).count();
         String output = "|" + request.toString() + "| " + countColorAndPosition + " | " + countColorOnly + " | " + round
                 + "/" + GAME_DURATION + " |";
         System.out.println(output);
