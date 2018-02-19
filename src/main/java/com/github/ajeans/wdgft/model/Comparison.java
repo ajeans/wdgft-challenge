@@ -16,6 +16,10 @@ public class Comparison {
         this.matches.add(TokenMatch.NOTHING);
     }
 
+    public List<TokenMatch> getMatches() {
+        return matches;
+    }
+
     public boolean isWinner() {
         return this.matches.stream().allMatch(tokenMatch -> tokenMatch == TokenMatch.COLOR_AND_POSITION);
     }

@@ -19,4 +19,12 @@ public class Combination {
         }
     }
 
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (Token token : tokens) {
+            output.append(token.name());
+        }
+        return output.toString();
+    }
+
 }
