@@ -1,3 +1,4 @@
+package com.github.ajeans.wdgft;
 
 public class MasterMindRunner {
 
