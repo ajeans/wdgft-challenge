@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Combination {
 
-    private static final int COMBINATION_SIZE = 4;
+    protected static final int COMBINATION_SIZE = 4;
 
     private List<Token> tokens;
 
@@ -13,10 +13,23 @@ public class Combination {
         assert combination != null;
         assert combination.length() == COMBINATION_SIZE;
         this.tokens = new LinkedList<Token>();
-        for (int i = 0 ; i < COMBINATION_SIZE ; i++) {
+        for (int i = 0; i < COMBINATION_SIZE; i++) {
             char c = combination.charAt(i);
             this.tokens.add(Token.valueOf(String.valueOf(c)));
         }
+    }
+
+    public Token getAt(int position) {
+        return this.tokens.get(position);
+    }
+
+    public boolean equalsAt(int position, Token token) {
+        assert position < COMBINATION_SIZE;
+        return this.tokens.get(position) == token;
+    }
+
+    public boolean contains(Token token) {
+        return this.tokens.stream().anyMatch(it -> it == token);
     }
 
     public String toString() {

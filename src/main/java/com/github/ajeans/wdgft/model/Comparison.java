@@ -8,12 +8,16 @@ public class Comparison {
     private List<TokenMatch> matches;
 
     public Comparison(Combination expected, Combination proposal) {
-        // TODO do comparison of combinations here
         this.matches = new LinkedList<>();
-        this.matches.add(TokenMatch.COLOR);
-        this.matches.add(TokenMatch.NOTHING);
-        this.matches.add(TokenMatch.COLOR_AND_POSITION);
-        this.matches.add(TokenMatch.NOTHING);
+        for (int i = 0; i < Combination.COMBINATION_SIZE; i++) {
+            if (proposal.equalsAt(i, expected.getAt(i))) {
+                this.matches.add(TokenMatch.COLOR_AND_POSITION);
+            } else if (expected.contains(proposal.getAt(i))) {
+                this.matches.add(TokenMatch.COLOR);
+            } else {
+                this.matches.add(TokenMatch.NOTHING);
+            }
+        }
     }
 
     public List<TokenMatch> getMatches() {
