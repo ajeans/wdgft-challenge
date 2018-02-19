@@ -13,10 +13,11 @@ public class MasterMindRunner {
     private static Combination computer;
 
     public static void main(String[] args) {
-        // TODO computer picks combination randomly
-        computer = new Combination("RYBO");
+        // Computer picks combination randomly
+        computer = new Combination();
         System.out.println("Computer has a secret, please guess it");
 
+        // Launch rounds until the end of the game
         boolean hasWon = false;
         Comparison comparison = null;
         while (!hasWon && round <= GAME_DURATION) {

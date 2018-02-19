@@ -9,6 +9,17 @@ public class Combination {
 
     private List<Token> tokens;
 
+    /**
+     * Randomly get a combination
+     */
+    public Combination() {
+        this.tokens = new LinkedList<Token>();
+        for (int i = 0; i < COMBINATION_SIZE; i++) {
+            int tokenOrdinal = (int) Math.floor(Math.random() * (COMBINATION_SIZE + 1));
+            this.tokens.add(Token.values()[tokenOrdinal]);
+        }
+    }
+
     public Combination(String combination) {
         assert combination != null;
         assert combination.length() == COMBINATION_SIZE;
