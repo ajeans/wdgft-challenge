@@ -15,26 +15,37 @@ public class MasterMindRunner {
     public static void main(String[] args) {
         // TODO computer picks combination randomly
         computer = new Combination("RYBO");
-        Comparison comparison = playRound();
+        System.out.println("Computer has a secret, please guess it");
+
+        boolean hasWon = false;
+        Comparison comparison = null;
+        while (!hasWon && round < GAME_DURATION) {
+            comparison = playRound();
+            round++;
+        }
         if (comparison.isWinner()) {
             System.out.println("YOU WIN");
             System.exit(0);
         } else if (round == GAME_DURATION) {
             System.out.println("YOU LOSE");
             System.exit(1);
-        } else {
-            round++;
         }
     }
 
     private static Comparison playRound() {
-        // TODO request input from user
-        Combination request = new Combination("RBOV");
-        // TODO check request against our combination
+        // Request combination
+        Combination request = requestCombination();
+        // Check request against our combination
         Comparison comparison = new Comparison(computer, request);
-        // TODO output result
+        // Output result
         displayResult(request, comparison);
         return comparison;
+    }
+
+    private static Combination requestCombination() {
+        System.out.println("Please input your combination");
+        String inputLine = System.console().readLine();
+        return new Combination(inputLine);
     }
 
     private static void displayResult(Combination request, Comparison comparison) {
