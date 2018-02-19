@@ -8,7 +8,7 @@ public class MasterMindRunner {
 
     private static final int GAME_DURATION = 10;
 
-    private static int round = 0;
+    private static int round = 1;
 
     private static Combination computer;
 
@@ -19,14 +19,15 @@ public class MasterMindRunner {
 
         boolean hasWon = false;
         Comparison comparison = null;
-        while (!hasWon && round < GAME_DURATION) {
+        while (!hasWon && round <= GAME_DURATION) {
             comparison = playRound();
+            hasWon = comparison.isWinner();
             round++;
         }
         if (comparison.isWinner()) {
             System.out.println("YOU WIN");
             System.exit(0);
-        } else if (round == GAME_DURATION) {
+        } else if (round >= GAME_DURATION) {
             System.out.println("YOU LOSE");
             System.exit(1);
         }
